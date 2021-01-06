@@ -35,7 +35,7 @@ Edit the `/etc/hosts` file on your local filesystem with a text editor and appen
 The ignition order is key. Do not start the client or the server before the proxy.
 
 ```console
-$ make proxy
+$ make proxy database
 $ make client # in a new terminal
 $ make server # in a new terminal
 ```
