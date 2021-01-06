@@ -1,0 +1,22 @@
+{
+    "background_color": "white",
+    "description": "Client",
+    "dir": "ltr",
+    "display": "standalone",
+    "lang": "en-US",
+    "name": "Client",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "scope": "/",
+    "short_name": "Client",
+    "start_url": "/",
+    "theme_color": "white",
+    "icons": [
+        {
+            "type": "image/png",
+            "sizes": "512x512",
+            "src": "/icon.png",
+            "purpose": "any maskable"
+        }
+    ]
+}
