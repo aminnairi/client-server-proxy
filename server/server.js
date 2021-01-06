@@ -1,28 +1,25 @@
+const {cors} = require("./src/middlewares.js");
+const {User} = require("./src/models.js");
+const {sequelize} = require("./src/sequelize.js");
+const {users} = require("./src/routes/users.js");
 const express = require("express");
 
-const application = express();
+const main = async () => {
+    const databaseConnection = await sequelize.authenticate();
 
-application.use((request, response, next) => {
-    const { origin } = request.headers;
+    await User.sync({force: true});
 
-    if (typeof origin !== "string") {
-        return response.sendStatus(403);
-    }
+    await User.create({username: "foo", password: "foo"});
+    await User.create({username: "bar", password: "bar"});
+    await User.create({username: "foobar", password: "foobar"});
 
-    const origins = [
-        "http://application.local",
-        "http://www.application.local"
-    ];
+    const application = express();
 
-    if (!origins.includes(origin)) {
-        return response.sendStatus(403);
-    }
+    application.use(cors);
+    application.use("/users", users);
+    application.listen(9000, () => console.log("Listening on http://localhost:9000"));
+};
 
-    response.header("Access-Control-Allow-Origin", origin);
-
-    return next();
+main().catch(({message}) => {
+    console.error(message);
 });
-
-application.get("/ping", (request, response) => response.send("pong"));
-
-application.listen(9000, () => console.log("Listening on http://localhost:9000"));
