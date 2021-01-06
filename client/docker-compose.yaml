@@ -1,0 +1,18 @@
+version: "3"
+
+networks:
+    proxy_default:
+        external: true
+
+services:
+    client:
+        container_name: client
+        image: node:14.0.0
+        user: node
+        stdin_open: true
+        tty: true
+        working_dir: /home/node
+        networks:
+            - proxy_default
+        volumes:
+            - .:/home/node

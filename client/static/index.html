@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Client</h1>
+        <script>
+            "use strict";
+
+            const main = async () => {
+                const response = await fetch("http://api.application.local/ping");
+
+                if (!response.ok) {
+                    throw new Error("Unable to reach the server.");
+                }
+
+                const text = await response.text();
+
+                console.log("Response from the server.");
+                console.log(text);
+                console.log("End response from the server.");
+            };
+
+            main().catch(error => {
+                console.error(error.message);
+            });
+        </script>
+    </body>
+</html>
