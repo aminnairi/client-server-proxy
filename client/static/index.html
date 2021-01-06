@@ -19,16 +19,16 @@
             "use strict";
 
             const main = async () => {
-                const response = await fetch("http://api.application.local/ping");
+                const response = await fetch("http://api.application.local/users");
 
                 if (!response.ok) {
                     throw new Error("Unable to reach the server.");
                 }
 
-                const text = await response.text();
+                const json = await response.json();
 
                 console.log("Response from the server.");
-                console.log(text);
+                console.log(json);
                 console.log("End response from the server.");
             };
 
