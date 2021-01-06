@@ -1,4 +1,4 @@
-.PHONY: proxy client server stop
+.PHONY: proxy client server database stop
 
 proxy:
 	make --directory proxy start
@@ -9,7 +9,11 @@ client:
 server:
 	make --directory server start
 
+database:
+	make --directory database start
+
 stop:
 	make --directory client stop
 	make --directory server stop
+	make --directory database stop
 	make --directory proxy stop
